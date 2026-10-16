@@ -1,0 +1,21 @@
+# 依赖（本项目零依赖，用不到；留着以防将来引入）
+node_modules/
+
+# ⚠️ 抓取产物与会话产物都含有对话全文，默认不要提交
+out/
+deepseek-share/
+*.v4.jsonl.zstd
+session.jsonl
+manifest.json
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+.tmp/

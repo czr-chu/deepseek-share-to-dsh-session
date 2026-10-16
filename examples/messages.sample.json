@@ -1,0 +1,157 @@
+[
+  {
+    "index": 0,
+    "message_id": 1,
+    "parent_id": null,
+    "role": "user",
+    "content": "你好，帮我解释一下 Markdown 里的引用块怎么写？",
+    "reasoning": null,
+    "timestamp": 1767225600.0,
+    "timestamp_iso": "2026-01-01T00:00:00.000Z",
+    "model": "",
+    "status": "FINISHED",
+    "conversation_mode": "DEFAULT",
+    "thinking_enabled": true,
+    "search_enabled": true,
+    "accumulated_token_usage": 38,
+    "incomplete_message": null,
+    "searches": [],
+    "sources": [],
+    "citation_map": [],
+    "tips": [],
+    "fragment_types": ["REQUEST"],
+    "fragments": [
+      { "id": 1, "type": "REQUEST", "content": "你好，帮我解释一下 Markdown 里的引用块怎么写？" }
+    ]
+  },
+  {
+    "index": 1,
+    "message_id": 2,
+    "parent_id": 1,
+    "role": "assistant",
+    "content": "引用块用行首的 `>` 表示，可以嵌套，也可以在一段里换行。\n\n```markdown\n> 第一层引用\n> > 嵌套的第二层\n>\n> 回到第一层，空行用单独的 `>`\n```\n\n渲染出来是这样：[reference:0]\n\n> 第一层引用\n> > 嵌套的第二层\n\n如果只想引用一两句，直接写在段首即可；需要引用多段时，每段前都要有 `>`。\n\n## 常见写法\n\n* 引用块内可以放列表、代码块、标题\n* 引用块内的空行要写成单独一行 `>`，否则渲染会断开\n* GitHub 的 Alerts 语法（`> [!NOTE]`）就是引用块的一种扩展",
+    "reasoning": "用户问的是 Markdown 引用块语法。这是一个基础语法问题，不需要联网，我直接给出最小示例：行首 `>`、嵌套 `>`、以及块内空行的写法。\n\n回答结构：先给一段可直接复制的代码，再给渲染结果，最后列几个容易踩坑的点。",
+    "timestamp": 1767225606.5,
+    "timestamp_iso": "2026-01-01T00:00:06.500Z",
+    "model": "",
+    "status": "FINISHED",
+    "conversation_mode": "DEFAULT",
+    "thinking_enabled": true,
+    "search_enabled": true,
+    "accumulated_token_usage": 412,
+    "incomplete_message": null,
+    "searches": [],
+    "sources": [
+      {
+        "fragment_id": 3,
+        "url": "https://example.com/markdown-guide#blockquote",
+        "title": "Markdown 基础语法速查（示例来源）",
+        "snippet": "Blockquotes are created by adding > before a line of text.",
+        "site_name": "example.com",
+        "published_at": null
+      }
+    ],
+    "citation_map": [
+      {
+        "marker": "[reference:0]",
+        "ref_type": "TOOL_OPEN",
+        "fragment_id": 3,
+        "url": "https://example.com/markdown-guide#blockquote",
+        "title": "Markdown 基础语法速查（示例来源）",
+        "snippet": "Blockquotes are created by adding > before a line of text."
+      }
+    ],
+    "tips": [
+      { "content": "本回答由 AI 生成，请自行核实。", "style": "WARNING" }
+    ],
+    "fragment_types": ["THINK", "TOOL_OPEN", "RESPONSE", "TIP"],
+    "fragments": [
+      { "id": 2, "type": "THINK", "content": "用户问的是 Markdown 引用块语法。", "status": "FINISHED" },
+      {
+        "id": 3,
+        "type": "TOOL_OPEN",
+        "result": {
+          "url": "https://example.com/markdown-guide#blockquote",
+          "title": "Markdown 基础语法速查（示例来源）",
+          "snippet": "Blockquotes are created by adding > before a line of text.",
+          "site_name": "example.com"
+        }
+      },
+      {
+        "id": 4,
+        "type": "RESPONSE",
+        "content": "见 citations",
+        "references": [{ "id": 3, "type": "TOOL_OPEN" }]
+      },
+      { "id": 5, "type": "TIP", "content": "本回答由 AI 生成，请自行核实。", "style": "WARNING" }
+    ]
+  },
+  {
+    "index": 2,
+    "message_id": 3,
+    "parent_id": 2,
+    "role": "user",
+    "content": "那表格怎么写？顺带说说对齐。",
+    "reasoning": null,
+    "timestamp": 1767225640.0,
+    "timestamp_iso": "2026-01-01T00:00:40.000Z",
+    "model": "",
+    "status": "FINISHED",
+    "conversation_mode": "DEFAULT",
+    "thinking_enabled": true,
+    "search_enabled": false,
+    "accumulated_token_usage": 460,
+    "incomplete_message": null,
+    "searches": [],
+    "sources": [],
+    "citation_map": [],
+    "tips": [],
+    "fragment_types": ["REQUEST"],
+    "fragments": [
+      { "id": 6, "type": "REQUEST", "content": "那表格怎么写？顺带说说对齐。" }
+    ]
+  },
+  {
+    "index": 3,
+    "message_id": 4,
+    "parent_id": 3,
+    "role": "assistant",
+    "content": "表格靠 `|` 分列、靠第二行的分隔行定义对齐方式：\n\n```markdown\n| 左对齐 | 居中 | 右对齐 |\n| :--- | :---: | ---: |\n| a | b | c |\n```\n\n| 左对齐 | 居中 | 右对齐 |\n| :--- | :---: | ---: |\n| a | b | c |\n\n两个容易踩坑的地方：\n\n1. 第二行必须有，且只能用 `-`、`:`、`|` 和空格\n2. 单元格里的竖线要转义成 `\\|`，否则会被当成列分隔符\n\n列宽不需要对齐，渲染器自己算；源码里的空格只是为了好读。[reference:1]",
+    "reasoning": "用户接着问表格和对齐。给出最小可运行示例（分隔行的 `:` 位置决定对齐），然后提醒转义竖线的坑。",
+    "timestamp": 1767225645.0,
+    "timestamp_iso": "2026-01-01T00:00:45.000Z",
+    "model": "",
+    "status": "FINISHED",
+    "conversation_mode": "DEFAULT",
+    "thinking_enabled": true,
+    "search_enabled": false,
+    "accumulated_token_usage": 780,
+    "incomplete_message": null,
+    "searches": [
+      {
+        "content": "Found 2 web pages",
+        "queries": ["markdown table alignment syntax"],
+        "results": [
+          { "url": "https://example.org/tables", "title": "Tables（示例来源）", "snippet": "Alignment is set with colons in the delimiter row.", "site_name": "example.org", "published_at": null }
+        ]
+      }
+    ],
+    "sources": [],
+    "citation_map": [
+      {
+        "marker": "[reference:1]",
+        "ref_type": "TOOL_SEARCH",
+        "fragment_id": 7,
+        "url": null,
+        "title": null,
+        "snippet": null
+      }
+    ],
+    "tips": [],
+    "fragment_types": ["THINK", "TOOL_SEARCH", "RESPONSE"],
+    "fragments": [
+      { "id": 7, "type": "TOOL_SEARCH", "content": "Found 2 web pages", "queries": [{ "query": "markdown table alignment syntax" }] },
+      { "id": 8, "type": "RESPONSE", "content": "见 citations", "references": [{ "id": 7, "type": "TOOL_SEARCH" }] }
+    ]
+  }
+]

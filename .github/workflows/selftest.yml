@@ -1,0 +1,38 @@
+name: selftest
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'   # 需要 >= 22.15（内置 zstd）
+
+      - name: 语法检查
+        run: |
+          for f in scripts/*.mjs; do node --check "$f"; done
+          bash -n scripts/*.sh
+
+      - name: 自检（生成 + 校验）
+        run: bash scripts/selftest.sh
+
+      - name: 泄露检查（不应出现真实路径 / 凭据）
+        run: |
+          set -e
+          if grep -rnE '/(home|Users)/[A-Za-z0-9._-]+' \
+               --include='*.md' --include='*.mjs' --include='*.sh' --include='*.json' .; then
+            echo "::error::发现疑似本机绝对路径，请脱敏"
+            exit 1
+          fi
+          if grep -rnE 'sk-[A-Za-z0-9]{16,}' . ; then
+            echo "::error::发现疑似 API Key"
+            exit 1
+          fi
+          echo "OK"

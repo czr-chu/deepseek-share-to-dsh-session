@@ -1,0 +1,36 @@
+{
+  "name": "deepseek-share-to-dsh-session",
+  "version": "1.0.0",
+  "description": "把 DeepSeek 网页版分享链接转成可继续对话的 DeepSeek Harness (DSH) 会话 / Convert a DeepSeek web share link into a continuable DSH session.",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=22.15"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "session",
+    "session-format",
+    "import",
+    "conversation",
+    "skill",
+    "zstd"
+  ],
+  "scripts": {
+    "selftest": "bash scripts/selftest.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "scripts",
+    "docs",
+    "examples"
+  ]
+}
